@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">techtest</string>
+    <string name="content_description_listing_image">Image of the item for sale</string>
+    <string name="positive_feedback_image_description">Image of a thumbs up indicating the number of unique positive feedback for this seller</string>
+    <string name="negative_feedback_image_description">Image of a thumbs down indicating the number of unique negative feedback for this seller</string>
+
+    <string name="example_title_text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</string>
+    <string name="example_description_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
 </resources>
