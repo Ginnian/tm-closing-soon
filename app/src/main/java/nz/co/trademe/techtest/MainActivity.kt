@@ -20,11 +20,14 @@ class MainActivity : AppCompatActivity(), Callback<ClosingSoonListings> {
     }
 
     override fun onFailure(call: Call<ClosingSoonListings>, t: Throwable) {
-        Toast.makeText(this, "Error loading closing soon listings.", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, t.toString(), Toast.LENGTH_SHORT).show()
     }
 
     override fun onResponse(call: Call<ClosingSoonListings>, response: Response<ClosingSoonListings>) {
         val body = response.body()
+
+        layout_rv_listings.adapter = ListingsRecyclerAdapter(this, response.body()!!.closingSoonListings)
+
         textView.text = when (body) {
             null -> response.message()
             else -> "Closing soon listings total count: ${body.totalCount}"
