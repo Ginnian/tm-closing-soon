@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import nz.co.trademe.wrapper.dto.ListingDetails
 import kotlinx.android.synthetic.main.activity_listings_main.view.*
+import nz.co.trademe.wrapper.dto.ListingDetails
 
 class ListingsRecyclerAdapter(private val context: Context, private val listings: List<ListingDetails>) :
         RecyclerView.Adapter<ListingsRecyclerAdapter.ViewHolder>() {
@@ -38,13 +38,13 @@ class ListingsRecyclerAdapter(private val context: Context, private val listings
                 .load(Uri.parse(listings[position].pictureHref ?: ""))
                 .placeholder(R.drawable.no_image)
                 .error(R.drawable.no_image)
-                .resize(100, 100)
+                .resize(50, 50)
                 .centerCrop()
                 .into(holder.imageIv)
 
         holder.rowLayout.setOnClickListener {
             val intent = Intent(context, ListingDetailsActivity::class.java)
-            intent.putExtra("AuctionId", listings[position].listingId)
+            intent.putExtra("listingId", listings[position].listingId)
             context.startActivity(intent)
         }
     }
