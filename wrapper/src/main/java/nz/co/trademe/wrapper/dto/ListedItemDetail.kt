@@ -8,7 +8,8 @@ data class ListedItemDetail(
         @Json(name = "PriceDisplay") val endDate: String,
         @Json(name = "Member") val member: Member,
         @Json(name = "Body") val body: String,
-        @Json(name = "Photos") val photoList: List<Gallery>
+        @Json(name = "Photos") val photoList: List<Gallery>,
+        @Json(name = "PhotoId") val primaryPhotoId: Int
 )
 
 data class Gallery (
