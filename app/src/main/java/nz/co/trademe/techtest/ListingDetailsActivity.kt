@@ -43,6 +43,8 @@ class ListingDetailsActivity : AppCompatActivity(), Callback<ListedItemDetail> {
                     .resize(50, 50)
                     .centerCrop()
                     .into(listing_detail_current_iv)
+
+        listing_images_rv.adapter = ListingDetailsPhotoRecyclerAdapter(body)
         } else {
             Toast.makeText(this, response.message(), Toast.LENGTH_SHORT).show()
         }

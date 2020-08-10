@@ -6,11 +6,12 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/image"
+        android:id="@+id/listing_detail_images_iv"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/content_description_listing_image"
         android:scaleType="centerCrop"
+        android:layout_margin="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1,1"
         app:layout_constraintStart_toStartOf="parent"
