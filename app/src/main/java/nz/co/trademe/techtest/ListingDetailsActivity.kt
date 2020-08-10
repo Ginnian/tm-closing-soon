@@ -1,8 +1,10 @@
 package nz.co.trademe.techtest
 
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_listing_details.*
 import nz.co.trademe.wrapper.TradeMeApi
 import nz.co.trademe.wrapper.dto.ListedItemDetail
@@ -25,24 +27,24 @@ class ListingDetailsActivity : AppCompatActivity(), Callback<ListedItemDetail> {
     }
 
     override fun onResponse(call: Call<ListedItemDetail>, response: Response<ListedItemDetail>) {
-        val body = response.body()
+    val body = response.body()
 
-        viewSetup()
-    }
-
-    private fun viewSetup() {
-        listing_title_tv.text = "example"
-        listing_description_tv.text = "example"
-        listing_member_nickname_tv.text = "example"
-        listing_member_location_tv.text = "example"
-        listing_negative_feedback_tv.text = "example"
-        listing_positive_feedback_tv.text = "example"
-//        Picasso.get()
-//                .load(Uri.parse("listings[position].pictureHref" ?: ""))
-//                .placeholder(R.drawable.no_image)
-//                .error(R.drawable.no_image)
-//                .resize(50, 50)
-//                .centerCrop()
-//                .into(listing_detail_current_iv)
+        if (body != null) {
+            listing_title_tv.text = body.title
+            listing_description_tv.text = body.body
+            listing_member_nickname_tv.text = body.member.nickname
+            listing_member_location_tv.text = body.member.region
+            listing_negative_feedback_tv.text = body.member.uniqueNegative.toString()
+            listing_positive_feedback_tv.text = body.member.uniquePositive.toString()
+            Picasso.get()
+                    .load(Uri.parse(body.pictureHref))
+                    .placeholder(R.drawable.no_image)
+                    .error(R.drawable.no_image)
+                    .resize(50, 50)
+                    .centerCrop()
+                    .into(listing_detail_current_iv)
+        } else {
+            Toast.makeText(this, response.message(), Toast.LENGTH_SHORT).show()
+        }
     }
 }
