@@ -7,6 +7,15 @@ data class ListedItemDetail(
         @Json(name = "Title") val title: String,
         @Json(name = "PriceDisplay") val endDate: String,
         @Json(name = "Member") val member: Member,
-        @Json(name = "PictureHref") val pictureHref: String,
-        @Json(name = "Body") val body: String
+        @Json(name = "Body") val body: String,
+        @Json(name = "Photos") val photoList: List<Gallery>
+)
+
+data class Gallery (
+        @Json(name = "Value") val gallery: Photos
+)
+
+data class Photos (
+        @Json(name = "PhotoId") val photoId: Int,
+        @Json(name = "FullSize") val pictureHref: String
 )

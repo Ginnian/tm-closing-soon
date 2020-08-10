@@ -11,6 +11,6 @@ interface ListingService {
     @GET("v1/Listings/closing.json?rows=250&sort_order=ExpiryAsc")
     fun retrieveClosingSoonListings(): Call<ClosingSoonListings>
 
-    @GET("https://api.trademe.co.nz/v1/Listings/{listingId}.json?return_member_profile=true")
+    @GET("v1/Listings/{listingId}.json?return_member_profile=true")
     fun retrieveListedItemDetail(@Path("listingId") listingId: Long): Call<ListedItemDetail>
 }
