@@ -37,7 +37,7 @@ class ListingDetailsActivity : AppCompatActivity(), Callback<ListedItemDetail> {
             listing_negative_feedback_tv.text = body.member.uniqueNegative.toString()
             listing_positive_feedback_tv.text = body.member.uniquePositive.toString()
             Picasso.get()
-                    .load(Uri.parse(body.pictureHref))
+                    .load(Uri.parse(body.photoList[0].gallery.pictureHref))
                     .placeholder(R.drawable.no_image)
                     .error(R.drawable.no_image)
                     .resize(50, 50)
