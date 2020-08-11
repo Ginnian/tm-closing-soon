@@ -9,14 +9,27 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_listing_details_image.view.*
 import nz.co.trademe.wrapper.dto.ListedItemDetail
 
-class ListingDetailsPhotoRecyclerAdapter(private val photos: ListedItemDetail) :
-        RecyclerView.Adapter<ListingDetailsPhotoRecyclerAdapter.ViewHolder>() {
+class ListingDetailsPhotoRecyclerAdapter(
+        private val photos: ListedItemDetail,
+        private val listener: OnImageClickListener
+    ) : RecyclerView.Adapter<ListingDetailsPhotoRecyclerAdapter.ViewHolder>()
+{
+    interface OnImageClickListener {
+        fun onImageClick(position: Int, photoHref: String)
+    }
 
-    val images = photos
+    inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener{
+        val listingImagesIv: ImageView = v.listing_detail_images_iv!!
 
-    class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        val listingImagesIv = v.listing_detail_images_iv!!
-//        val primaryImage = v.listing_detail_current_iv!!
+        init { v.setOnClickListener(this) }
+
+        override fun onClick(v: View?) {
+            val position = adapterPosition
+            val photoHref = photos.photoList[position].gallery.pictureHref
+            if (position != RecyclerView.NO_POSITION) {
+                listener.onImageClick(position, photoHref)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -35,13 +48,6 @@ class ListingDetailsPhotoRecyclerAdapter(private val photos: ListedItemDetail) :
                 R.drawable.no_image,
                 R.drawable.no_image,
                 holder.listingImagesIv)
-
-//        holder.listingImagesIv.setOnClickListener {
-//            assignImage(photos.photoList[position].gallery.pictureHref,
-//                    R.drawable.no_image,
-//                    R.drawable.no_image,
-//                    holder.primaryImage)
-//        }
     }
 
     private fun assignImage(uri: String, placeholderImage: Int,
