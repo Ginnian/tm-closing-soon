@@ -10,12 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="4dp"
+        android:clickable="true"
+        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="2.5:1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:clickable="true"
-        android:focusable="true">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -25,6 +25,7 @@
                 android:id="@+id/auction_image_main_iv"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:contentDescription="@string/content_description_listing_image"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -32,8 +33,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent="0.4"
-                tools:src="@tools:sample/backgrounds/scenic"
-                android:contentDescription="@string/content_description_listing_image" />
+                tools:src="@tools:sample/backgrounds/scenic" />
 
             <TextView
                 android:id="@+id/auction_title_main_tv"
@@ -45,10 +45,10 @@
                 android:maxLines="2"
                 android:paddingHorizontal="4dp"
                 android:textColor="@android:color/black"
+                android:textIsSelectable="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/auction_image_main_iv"
                 app:layout_constraintTop_toTopOf="parent"
-                android:textIsSelectable="true"
                 tools:text="@string/example_title_text" />
 
             <TextView
@@ -59,10 +59,45 @@
                 android:layout_marginLeft="2dp"
                 android:paddingHorizontal="4dp"
                 android:text="2 days"
+                android:layout_marginRight="8dp"
+                android:textColor="@color/colorAlert"
                 android:textSize="12sp"
-                app:layout_constraintLeft_toRightOf="@+id/auction_image_main_iv"
-                app:layout_constraintTop_toBottomOf="@+id/auction_title_main_tv" />
+                app:layout_constraintBottom_toTopOf="@+id/auction_priceDisplay_tv"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginEnd="8dp" />
 
+            <TextView
+                android:id="@+id/auction_priceDisplay_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="$2.99"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <TextView
+                android:id="@+id/auction_region_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="Region"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/auction_image_main_iv" />
+
+            <TextView
+                android:id="@+id/auction_nickname_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:text="Nickname"
+                android:textColor="@android:color/black"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toTopOf="@+id/auction_region_tv"
+                app:layout_constraintLeft_toRightOf="@+id/auction_image_main_iv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
