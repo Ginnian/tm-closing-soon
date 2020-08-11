@@ -2,6 +2,7 @@ package nz.co.trademe.techtest
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
@@ -12,7 +13,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ListingDetailsActivity : AppCompatActivity(), Callback<ListedItemDetail> {
+class ListingDetailsActivity : AppCompatActivity(), Callback<ListedItemDetail>, ListingDetailsPhotoRecyclerAdapter.OnImageClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_listing_details)
@@ -44,9 +45,26 @@ class ListingDetailsActivity : AppCompatActivity(), Callback<ListedItemDetail> {
                     .centerCrop()
                     .into(listing_detail_current_iv)
 
-        listing_images_rv.adapter = ListingDetailsPhotoRecyclerAdapter(body)
+        listing_images_rv.adapter = ListingDetailsPhotoRecyclerAdapter(body, this)
+
         } else {
             Toast.makeText(this, response.message(), Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onImageClick(position: Int, photoHref: String) {
+        Log.e(TAG,"Item $position clicked. Href: $photoHref")
+
+        Picasso.get()
+                .load(photoHref)
+                .placeholder(R.drawable.no_image)
+                .error(R.drawable.no_image)
+                .resize(50, 50)
+                .centerCrop()
+                .into(listing_detail_current_iv)
+    }
+
+    companion object Logging {
+        const val TAG = "ListingDetailsActivity"
     }
 }
