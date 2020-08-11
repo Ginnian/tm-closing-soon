@@ -19,6 +19,9 @@ class ListingsRecyclerAdapter(private val context: Context, private val listings
         val titleTv = v.auction_title_main_tv!!
         val closingTimeTv = v.auction_closing_time_tv!!
         val rowLayout = v.auction_row_cv!!
+        val regionTv = v.auction_region_tv
+        val nicknameTv = v.auction_nickname_tv
+        val priceDisplayTv = v.auction_priceDisplay_tv
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -41,6 +44,9 @@ class ListingsRecyclerAdapter(private val context: Context, private val listings
                 .resize(50, 50)
                 .centerCrop()
                 .into(holder.imageIv)
+        holder.regionTv.text = listings[position].region
+        holder.priceDisplayTv.text = listings[position].priceDisplay
+//        holder.nicknameTv.text = listings[position].
 
         holder.rowLayout.setOnClickListener {
             val intent = Intent(context, ListingDetailsActivity::class.java)
