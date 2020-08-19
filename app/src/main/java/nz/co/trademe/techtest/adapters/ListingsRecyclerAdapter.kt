@@ -2,12 +2,11 @@ package nz.co.trademe.techtest.adapters
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_listings_main.view.*
 import nz.co.trademe.techtest.R
 import nz.co.trademe.techtest.activites.ListingDetailsActivity
@@ -40,11 +39,9 @@ class ListingsRecyclerAdapter(private val context: Context, private val listings
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.titleTv.text = listings[position].title
-        Picasso.get()
-                .load(Uri.parse(listings[position].pictureHref ?: ""))
+        Glide.with(context)
+                .load(listings[position].pictureHref)
                 .placeholder(R.drawable.no_image)
-                .error(R.drawable.no_image)
-                .resize(50, 50)
                 .centerCrop()
                 .into(holder.imageIv)
         holder.regionTv.text = listings[position].region
@@ -59,6 +56,4 @@ class ListingsRecyclerAdapter(private val context: Context, private val listings
             context.startActivity(intent)
         }
     }
-
-
 }

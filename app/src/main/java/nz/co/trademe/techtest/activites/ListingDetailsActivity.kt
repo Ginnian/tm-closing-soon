@@ -1,11 +1,10 @@
 package nz.co.trademe.techtest.activites
 
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_listing_details.*
 import nz.co.trademe.techtest.R
 import nz.co.trademe.techtest.adapters.ListingDetailsPhotoRecyclerAdapter
@@ -39,15 +38,14 @@ class ListingDetailsActivity : AppCompatActivity(), Callback<ListedItemDetail>, 
             listing_member_location_tv.text = body.member.region
             listing_negative_feedback_tv.text = body.member.uniqueNegative.toString()
             listing_positive_feedback_tv.text = body.member.uniquePositive.toString()
-            Picasso.get()
-                    .load(Uri.parse(body.photoList[0].gallery.pictureHref))
+            Glide.with(this)
+                    .load(body.photoList[0].gallery.pictureHref)
                     .placeholder(R.drawable.no_image)
-                    .error(R.drawable.no_image)
-                    .resize(50, 50)
                     .centerCrop()
                     .into(listing_detail_current_iv)
 
-        listing_images_rv.adapter = ListingDetailsPhotoRecyclerAdapter(body, this)
+        listing_images_rv.adapter =
+                ListingDetailsPhotoRecyclerAdapter(this, body, this)
 
         } else {
             Toast.makeText(this, response.message(), Toast.LENGTH_SHORT).show()
@@ -55,13 +53,11 @@ class ListingDetailsActivity : AppCompatActivity(), Callback<ListedItemDetail>, 
     }
 
     override fun onImageClick(position: Int, photoHref: String) {
-        Log.e(TAG,"Item $position clicked. Href: $photoHref")
+        Log.d(TAG,"Item $position clicked. Href: $photoHref")
 
-        Picasso.get()
+        Glide.with(this)
                 .load(photoHref)
                 .placeholder(R.drawable.no_image)
-                .error(R.drawable.no_image)
-                .resize(50, 50)
                 .centerCrop()
                 .into(listing_detail_current_iv)
     }
