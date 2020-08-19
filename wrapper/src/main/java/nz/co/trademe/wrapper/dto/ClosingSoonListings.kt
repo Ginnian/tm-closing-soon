@@ -13,5 +13,6 @@ data class ListingDetails(
         @Json(name = "PictureHref") val pictureHref: String?,
         @Json(name = "Region") val region: String,
         @Json(name = "PriceDisplay") val priceDisplay: String,
-        @Json(name = "MemberId") val memberId: Long
+        @Json(name = "MemberId") val memberId: Long,
+        @Json(name = "EndDate") val listingClosingDate: String
 )

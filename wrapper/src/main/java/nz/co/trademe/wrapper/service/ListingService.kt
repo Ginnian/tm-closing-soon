@@ -8,7 +8,7 @@ import retrofit2.http.Path
 
 interface ListingService {
 
-    @GET("v1/Listings/closing.json?rows=250&sort_order=ExpiryAsc&photo_size=FullSize")
+    @GET("v1/Listings/closing.json?rows=250&photo_size=FullSize&sort_order=ExpiryAsc")
     fun retrieveClosingSoonListings(): Call<ClosingSoonListings>
 
     @GET("v1/Listings/{listingId}.json?return_member_profile=true")

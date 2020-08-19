@@ -1,4 +1,4 @@
-package nz.co.trademe.techtest
+package nz.co.trademe.techtest.adapters
 
 import android.content.Context
 import android.content.Intent
@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_listings_main.view.*
+import nz.co.trademe.techtest.R
+import nz.co.trademe.techtest.activites.ListingDetailsActivity
+import nz.co.trademe.techtest.utils.DateTimeUtils
 import nz.co.trademe.wrapper.dto.ListingDetails
 
 class ListingsRecyclerAdapter(private val context: Context, private val listings: List<ListingDetails>) :
@@ -46,6 +49,8 @@ class ListingsRecyclerAdapter(private val context: Context, private val listings
                 .into(holder.imageIv)
         holder.regionTv.text = listings[position].region
         holder.priceDisplayTv.text = listings[position].priceDisplay
+        holder.closingTimeTv.text =
+                DateTimeUtils.formatDateToTimeRemaining(listings[position].listingClosingDate)
 //        holder.nicknameTv.text = listings[position].
 
         holder.rowLayout.setOnClickListener {
@@ -54,4 +59,6 @@ class ListingsRecyclerAdapter(private val context: Context, private val listings
             context.startActivity(intent)
         }
     }
+
+
 }
