@@ -1,4 +1,4 @@
-package nz.co.trademe.techtest
+package nz.co.trademe.techtest.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_listing_details_image.view.*
+import nz.co.trademe.techtest.R
 import nz.co.trademe.wrapper.dto.ListedItemDetail
 
 class ListingDetailsPhotoRecyclerAdapter(
