@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/thumb_up_alt/baseline_thumb_up_alt_24.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/thumb_down/baseline_thumb_down_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -33,8 +33,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="00fe27" />
-                            <entry key="outputName" value="ic_positive_feedback" />
+                            <entry key="color" value="fe0300" />
+                            <entry key="outputName" value="ic_baseline_thumb_down_24" />
                             <entry key="sourceFile" value="C:\Users\virgi\Downloads\trade-me-tech-test\tm-tech-test" />
                           </map>
                         </option>

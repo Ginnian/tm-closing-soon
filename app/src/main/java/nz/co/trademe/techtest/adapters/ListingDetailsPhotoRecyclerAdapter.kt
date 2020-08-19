@@ -1,16 +1,18 @@
 package nz.co.trademe.techtest.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_listing_details_image.view.*
 import nz.co.trademe.techtest.R
 import nz.co.trademe.wrapper.dto.ListedItemDetail
 
 class ListingDetailsPhotoRecyclerAdapter(
+        private val context: Context,
         private val photos: ListedItemDetail,
         private val listener: OnImageClickListener
     ) : RecyclerView.Adapter<ListingDetailsPhotoRecyclerAdapter.ViewHolder>()
@@ -45,20 +47,10 @@ class ListingDetailsPhotoRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        assignImage(photos.photoList[position].gallery.pictureHref,
-                R.drawable.no_image,
-                R.drawable.no_image,
-                holder.listingImagesIv)
-    }
-
-    private fun assignImage(uri: String, placeholderImage: Int,
-                            errorImage: Int, targetImageView: ImageView) {
-        Picasso.get()
-                .load(uri)
-                .placeholder(placeholderImage)
-                .error(errorImage)
-                .resize(50, 50)
+        Glide.with(context)
+                .load(photos.photoList[position].gallery.pictureHref)
+                .placeholder(R.drawable.no_image)
                 .centerCrop()
-                .into(targetImageView)
+                .into(holder.listingImagesIv)
     }
 }
