@@ -30,10 +30,10 @@ object DateTimeUtils {
         val dateDiff = abs(closingDateTimeEpoch - currentDateTimeEpoch)
 
         return when {
-            dateDiff < MILLIS_IN_MINUTE -> "<1 min"
-            dateDiff < MILLIS_IN_HOUR -> (MILLIS_IN_HOUR / dateDiff).toString() + " mins"
-            dateDiff < MILLIS_IN_DAY -> (MILLIS_IN_DAY / dateDiff).toString() + " hrs"
-            dateDiff < MILLIS_IN_WEEK -> (MILLIS_IN_WEEK / dateDiff).toString() + " days"
+            dateDiff < MILLIS_IN_MINUTE -> "<1m"
+            dateDiff < MILLIS_IN_HOUR -> (MILLIS_IN_HOUR / dateDiff).toString() + "m"
+            dateDiff < MILLIS_IN_DAY -> (MILLIS_IN_DAY / dateDiff).toString() + "h"
+            dateDiff < MILLIS_IN_WEEK -> (MILLIS_IN_WEEK / dateDiff).toString() + "d"
             else -> epochTimeToDateTime(dateDiff)
         }
     }
