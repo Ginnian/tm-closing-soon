@@ -2,6 +2,7 @@ package nz.co.trademe.techtest.activites
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -38,15 +39,16 @@ class ListingDetailsActivity : AppCompatActivity(), Callback<ListedItemDetail>, 
             listing_member_location_tv.text = body.member.region
             listing_negative_feedback_tv.text = body.member.uniqueNegative.toString()
             listing_positive_feedback_tv.text = body.member.uniquePositive.toString()
-            Glide.with(this)
-                    .load(body.photoList[0].gallery.pictureHref)
-                    .placeholder(R.drawable.no_image)
-                    .centerCrop()
-                    .into(listing_detail_current_iv)
-
-        listing_images_rv.adapter =
-                ListingDetailsPhotoRecyclerAdapter(this, body, this)
-
+            if (body.primaryPhotoId != null) {
+                listing_images_rv.visibility = View.VISIBLE
+                Glide.with(this)
+                        .load(body.photoList[0].gallery.pictureHref)
+                        .placeholder(R.drawable.no_image)
+                        .centerCrop()
+                        .into(listing_detail_current_iv)
+                listing_images_rv.adapter =
+                        ListingDetailsPhotoRecyclerAdapter(this, body, this)
+            }
         } else {
             Toast.makeText(this, response.message(), Toast.LENGTH_SHORT).show()
         }
